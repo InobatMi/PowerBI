@@ -1,0 +1,31 @@
+relationship ec2425f2-8b23-4ca4-a96e-9e6360b636cb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Sales.Date
+	toColumn: LocalDateTable_8630f88b-3fe7-4ba0-ac00-5f4bb4776487.Date
+
+relationship AutoDetected_67db4b3b-29ed-408e-86a1-f5822563d025
+	fromColumn: Sales_Data.Region
+	toColumn: Sales_Dataset.Region
+
+relationship AutoDetected_4abf5056-a5ff-47ea-bf3e-34b3f2919482
+	fromColumn: 'Sales_Data (2)'.Region
+	toColumn: Sales_Dataset.Region
+
+relationship AutoDetected_37d3c265-6fee-4f95-95f1-bbe82167d6e0
+	fromColumn: Merge1.Region
+	toColumn: Sales_Dataset.Region
+
+relationship AutoDetected_132d0283-2917-44a2-a40c-2a3b3f536873
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Sales_Data (2)'.Index
+	toColumn: Sales_Data.Index
+
+relationship AutoDetected_deb49016-fb27-43d4-9968-1733f8d79a70
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Merge1.Index
+	toColumn: Sales_Data.Index
+

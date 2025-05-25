@@ -1,0 +1,36 @@
+relationship 95953ee1-7507-479a-9f33-a4cbeccb219d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Production TransactionHistory'.TransactionDate
+	toColumn: LocalDateTable_16c2f055-4571-457c-9c1b-6b27313cfdf3.Date
+
+relationship c6594b88-3970-40f7-acaf-6b679d65357b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Production TransactionHistory'.ModifiedDate
+	toColumn: LocalDateTable_5b876367-23cc-4f16-854c-fa6117d38c40.Date
+
+relationship b846999f-4edc-47b1-a8d3-aa7b02c70ca0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Production Product'.SellStartDate
+	toColumn: LocalDateTable_c0a501ee-e17a-4f01-b123-a9a559c5160f.Date
+
+relationship e6143190-077f-4ec6-802f-bc14a6553266
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Production Product'.SellEndDate
+	toColumn: LocalDateTable_5389ccc0-5a1d-4659-b3d2-7e39dd9abcb2.Date
+
+relationship bc4d8093-044d-43c3-ba58-46d5de71fe43
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Production Product'.DiscontinuedDate
+	toColumn: LocalDateTable_afffd7cb-4c3c-4ba6-9de3-12141c7e9458.Date
+
+relationship bc1bd665-3566-4ae7-99b8-b3ab4c25a6f4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Production Product'.ModifiedDate
+	toColumn: LocalDateTable_09a3c1f7-3ea1-4a6c-9993-91d0537eaf66.Date
+
+relationship 4903472d-2848-4bfd-b6f2-18fb32c6afa2
+	fromColumn: 'Production TransactionHistory'.ProductID
+	toColumn: 'Production Product'.ProductID
+
+	annotation PBI_IsFromSource = FS
+

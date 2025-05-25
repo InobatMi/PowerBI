@@ -1,0 +1,21 @@
+### Power Query Editor Practice Tasks:
+1. Rename columns for better readability.
+2. Change data types for fields like Date and Units_Sold.
+3. Filter rows to include only sales from 2022.
+4. Sort data by Region and then by Total_Sale.
+5. Remove duplicates based on Sale_ID.
+6. Replace values in the Sales_Rep column (e.g., rename "Doe" to "D. Doe").
+7. Add a conditional column to classify Total_Sale as "High", "Medium", or "Low".
+8. Split the `Date` column into separate Year, Month, and Day columns.
+9. Combine data from two columns, such as Region and Product, into one.
+10. Group data by Region and calculate the total Units_Sold.
+11. Unpivot columns for Category to analyze sales trends.
+12. Pivot columns using Region as headers and summing Total_Profit.
+13. Create a custom column to calculate Tax as 10% of Total_Sale.
+14. Filter out rows where Profit_Per_Unit is less than 50.
+15. Remove columns that are not needed for analysis (e.g., Profit_Per_Unit).
+16. Create a new column to calculate Revenue as Units_Sold * Unit_Price.
+17. Split rows with multiple values in the Category column into separate rows.
+18. Merge queries with another dataset containing Region Manager details.
+19. Calculate percentage change in Units_Sold compared to the previous month.
+20. Export transformed data back to Excel for final analysis.

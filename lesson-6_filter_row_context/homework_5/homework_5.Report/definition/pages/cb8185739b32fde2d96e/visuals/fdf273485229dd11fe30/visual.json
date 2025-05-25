@@ -1,0 +1,71 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
+  "name": "fdf273485229dd11fe30",
+  "position": {
+    "x": 8.8684402825516244,
+    "y": 0,
+    "z": 0,
+    "height": 317.04674010122062,
+    "width": 407.94825299737477,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimSalesTerritory"
+                    }
+                  },
+                  "Property": "SalesTerritoryRegion"
+                }
+              },
+              "queryRef": "DimSalesTerritory.SalesTerritoryRegion",
+              "nativeQueryRef": "SalesTerritoryRegion"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FactInternetSales"
+                        }
+                      },
+                      "Property": "SalesAmount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FactInternetSales.SalesAmount)",
+              "nativeQueryRef": "Sum of SalesAmount"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures Table"
+                    }
+                  },
+                  "Property": "% of region"
+                }
+              },
+              "queryRef": "Measures Table.% of region",
+              "nativeQueryRef": "% of region"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

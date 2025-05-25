@@ -1,0 +1,40 @@
+relationship 05caaecd-741d-4b3a-a27c-c8d8c345b0bd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Employee_table.HireDate
+	toColumn: LocalDateTable_4862469c-2ec7-483b-b382-9a852be2355e.Date
+
+relationship ad398b34-7773-478b-b73f-9c43434fdabd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Employee_table.BirthDate
+	toColumn: LocalDateTable_37e21847-2572-4fcc-9bac-4ec88395fd33.Date
+
+relationship f3a473f4-7d52-4102-8db4-19a2394e2b4f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Employee_table.StartDate
+	toColumn: LocalDateTable_2334df0b-efb3-4430-b3fe-35585cdd43a2.Date
+
+relationship 68062c71-a590-4f1e-b59f-404b3de3817d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Employee_table.EndDate
+	toColumn: LocalDateTable_4365621e-9fcf-4a75-90b8-5678c3305f31.Date
+
+relationship c7a99c61-3a53-4736-be4b-7e07d560da5c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Employee.HireDate
+	toColumn: LocalDateTable_09c35126-a345-409e-b2af-916d3270c7bb.Date
+
+relationship 715253ce-a88a-4713-82ef-9815da909865
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Employee.BirthDate
+	toColumn: LocalDateTable_d1294678-584b-4a51-840b-bcc789d0fde1.Date
+
+relationship 03c8f923-163b-4efe-ae66-477db30ed811
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Employee.StartDate
+	toColumn: LocalDateTable_2ed1a188-8ae6-4bc6-b8f4-6f2f7abe31c6.Date
+
+relationship 205ef622-7aa2-4860-947c-668557c56753
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Employee.EndDate
+	toColumn: LocalDateTable_d39692fb-c1cb-4d63-96aa-44b764775a8b.Date
+

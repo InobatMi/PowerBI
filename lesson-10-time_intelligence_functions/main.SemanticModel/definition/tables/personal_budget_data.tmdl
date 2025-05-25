@@ -1,0 +1,88 @@
+table personal_budget_data
+	lineageTag: 9c19606f-537c-4eeb-a221-08342c1928f2
+
+	column TransactionID
+		dataType: int64
+		formatString: 0
+		lineageTag: 8e0729ea-00a3-42be-aaf0-afce93cabee6
+		summarizeBy: count
+		sourceColumn: TransactionID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransactionDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e7b1acaa-961c-4ed3-ad15-b3eafe55d3c5
+		summarizeBy: none
+		sourceColumn: TransactionDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column TransactionAmount
+		dataType: double
+		lineageTag: 36901227-5a4a-4d36-9c3a-0663e5ec3d9b
+		summarizeBy: sum
+		sourceColumn: TransactionAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TransactionCategory
+		dataType: string
+		lineageTag: 68deb601-ffd4-41a7-8c02-26abe0cb8d8e
+		summarizeBy: none
+		sourceColumn: TransactionCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 8078e22d-dd82-47c5-8f60-077504ccda32
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Store
+		dataType: string
+		lineageTag: 55fbc089-59c7-4bdc-b7b9-4cb32dff24d8
+		summarizeBy: none
+		sourceColumn: Store
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 686c98cd-a324-4ca6-96c8-a12842e3fec6
+		summarizeBy: none
+		sourceColumn: Time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column TransactionType
+		dataType: string
+		lineageTag: 19a21edc-6117-403c-bb08-7847e0d05ab6
+		summarizeBy: none
+		sourceColumn: TransactionType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition personal_budget_data = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Inobat\Desktop\Maab\Power BI\lesson-10-time_intelligence_functions\personal_budget_data.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"TransactionID", Int64.Type}, {"TransactionDate", type date}, {"TransactionAmount", type number}, {"TransactionCategory", type text}, {"Region", type text}, {"Store", type text}, {"Time", type time}, {"TransactionType", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

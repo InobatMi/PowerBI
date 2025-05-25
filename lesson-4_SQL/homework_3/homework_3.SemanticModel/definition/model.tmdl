@@ -1,0 +1,40 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		fastCombine
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup 'GetAllEmployeesByDepName func'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'working with params'
+
+	annotation PBI_QueryGroupOrder = 1
+
+annotation PBI_QueryOrder = ["Employee_table","Department_name","Employee","Multiple_deps","Dep_names","GetAllEmployeesByDepName"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.141.1558.0 (25.03)+75b5f06a991f8f8a8a4d6b6fcd0f66e1ec2d6fdc
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Employee_table
+ref table DateTableTemplate_664ec222-9d86-43c7-a047-4efe32c7f3da
+ref table LocalDateTable_4862469c-2ec7-483b-b382-9a852be2355e
+ref table LocalDateTable_37e21847-2572-4fcc-9bac-4ec88395fd33
+ref table LocalDateTable_2334df0b-efb3-4430-b3fe-35585cdd43a2
+ref table LocalDateTable_4365621e-9fcf-4a75-90b8-5678c3305f31
+ref table Employee
+ref table LocalDateTable_09c35126-a345-409e-b2af-916d3270c7bb
+ref table LocalDateTable_d1294678-584b-4a51-840b-bcc789d0fde1
+ref table LocalDateTable_2ed1a188-8ae6-4bc6-b8f4-6f2f7abe31c6
+ref table LocalDateTable_d39692fb-c1cb-4d63-96aa-44b764775a8b
+ref table Multiple_deps
+
+ref cultureInfo en-US
+

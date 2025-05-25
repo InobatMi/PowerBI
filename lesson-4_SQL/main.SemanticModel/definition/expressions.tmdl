@@ -1,0 +1,32 @@
+expression EnglishEducation = "Partial College" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 9986fe96-1fc5-43c7-b1e0-faba56b532fd
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression English_fields = "Bachelors" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 1eea6a2a-0acc-4bbf-89ca-e98776625794
+	queryGroup: GetAllCustomersByEnglishEdu
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression GetAllCustomersByEnglishEdu =
+		let
+		    Source = (English_fields as text) => let
+		        English_edu1 = English_fields,
+		        Source = Sql.Database("DESKTOP-CSSCKLQ", "AdventureWorksDW2019", [Query="select * from [dbo].[DimCustomer]#(lf)where EnglishEducation = '"&English_edu1&"'"])
+		    in
+		        Source
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""DimCustomer1""}" ]
+	lineageTag: 12d42da6-79a4-46fb-8a11-c01ccf4fe66b
+	queryGroup: GetAllCustomersByEnglishEdu
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+

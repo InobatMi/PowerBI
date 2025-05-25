@@ -1,0 +1,52 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
+  "name": "99c283a78f597f105ac6",
+  "position": {
+    "x": 296.69519481418257,
+    "y": 141.73337331887703,
+    "z": 0,
+    "height": 359.05787907448848,
+    "width": 383.62499711642715,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Songs"
+                    }
+                  },
+                  "Property": "Artist"
+                }
+              },
+              "queryRef": "Songs.Artist",
+              "nativeQueryRef": "Artist"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Songs"
+                    }
+                  },
+                  "Property": "Song"
+                }
+              },
+              "queryRef": "Songs.Song",
+              "nativeQueryRef": "Song"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

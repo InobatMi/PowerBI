@@ -1,0 +1,59 @@
+table 'Measures Table'
+	lineageTag: 6ffa68b6-d7da-4d80-9a9a-02e3cdf3981e
+
+	measure 'TotalSales (M)' = CALCULATE(SUM(FactInternetSales[SalesAmount]),FILTER(DimCustomer,DimCustomer[Gender] = "M"))
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 5ea91064-b77a-435a-8142-bd7abd79d523
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'TotalSales (F)' = CALCULATE(SUM(FactInternetSales[SalesAmount]),FILTER(DimCustomer,DimCustomer[Gender] = "F"))
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: d2e5d160-390c-4065-917d-b05eb2f7a13e
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure '% of females' = [TotalSales (F)]/CALCULATE(SUM(FactInternetSales[SalesAmount]),all(DimCustomer))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 58fa8864-201e-493b-b9b4-9e9dde187eb9
+
+	measure '% of males' = [TotalSales (M)]/CALCULATE(SUM(FactInternetSales[SalesAmount]),all(DimCustomer))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 43783540-290e-45d9-bc79-c80f2131234d
+
+	measure 'TotalSales all' = CALCULATE(SUM(FactInternetSales[SalesAmount]),ALL(DimCustomer))
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 1d02ef89-6010-47c7-be38-3622b09876d4
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure '% of EnglishOccupation' = CALCULATE(SUM(FactInternetSales[SalesAmount]),ALLEXCEPT(DimCustomer,DimCustomer[EnglishOccupation]))/ [TotalSales all]
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		lineageTag: 7db5dab4-c203-4b8a-9d94-47133abe9360
+
+	measure TotalSales = CALCULATE(SUM(FactInternetSales[SalesAmount]))
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 09250b4b-9c00-4c54-bab2-2b5392e0092a
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure '% of EnglishOccupation (allselected)' = DIVIDE(SUM(FactInternetSales[SalesAmount]), CALCULATE(SUM(FactInternetSales[SalesAmount]),ALLSELECTED(DimCustomer[EnglishOccupation])))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 92c2b317-fd2e-49b6-b27a-170de3055ba3
+
+	measure '% of EnglishOccupation (removefilters)' = DIVIDE(SUM(FactInternetSales[SalesAmount]),CALCULATE(SUM(FactInternetSales[SalesAmount]),REMOVEFILTERS(DimCustomer[EnglishOccupation])))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 30048a5d-8897-4df0-b57d-02877bda8adb
+
+	partition 'Measures Table' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

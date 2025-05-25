@@ -1,0 +1,61 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 274,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "personal_budget_data",
+          "nodeLineageTag": "9c19606f-537c-4eeb-a221-08342c1928f2",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 349,
+            "y": 35
+          },
+          "nodeIndex": "Date",
+          "nodeLineageTag": "ec2452fd-89ce-46b9-8a15-fc6fca570c73",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 635,
+            "y": 91
+          },
+          "nodeIndex": "Measures Table",
+          "nodeLineageTag": "44f5ce9f-226a-4263-a823-19122c1f90e6",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 3
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

@@ -1,0 +1,72 @@
+relationship 858d0676-8489-4d92-99ab-11c5a7d788e9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimCustomer.BirthDate
+	toColumn: LocalDateTable_5e45c7f0-5086-4b35-aae0-9d5fd41a24e5.Date
+
+relationship d3e22ba9-549e-4c39-bd86-9fa87a084124
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimCustomer.DateFirstPurchase
+	toColumn: LocalDateTable_0207e92e-486d-4b72-9471-50a588cf9847.Date
+
+relationship cb25858b-387c-4043-b06c-74ec75b52046
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimDate.FullDateAlternateKey
+	toColumn: LocalDateTable_599e4f3a-66ae-416f-b584-3b0c065a2a30.Date
+
+relationship 64f53e52-2cb4-4e0e-935a-90cdf985e6c8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimProduct.StartDate
+	toColumn: LocalDateTable_e16a3f6a-fd3e-42dc-92a3-a3f93dbf451c.Date
+
+relationship 90171054-0da0-438c-9a90-c95ebf064be3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimProduct.EndDate
+	toColumn: LocalDateTable_c55c2fdd-cf79-4599-99d1-434aa648030f.Date
+
+relationship 2c159389-954f-4d67-a751-cb8f5918a576
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactInternetSales.OrderDate
+	toColumn: LocalDateTable_d3245884-ae21-46e1-b13f-19e7d4bf9733.Date
+
+relationship 4fa5c81f-593f-4ef0-a90e-2b1eb525c6ec
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactInternetSales.DueDate
+	toColumn: LocalDateTable_8baf0ba3-5c91-4190-9128-8fe2174027af.Date
+
+relationship 9215ebec-ac25-488e-a61c-e59472aa99d9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactInternetSales.ShipDate
+	toColumn: LocalDateTable_38e8c7b7-c2e8-4160-8d7b-6297a9405b8b.Date
+
+relationship e7ac2be1-ea86-48cc-85b6-4a634be9a616
+	fromColumn: FactInternetSales.CustomerKey
+	toColumn: DimCustomer.CustomerKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 5cd1a8da-e3e4-4045-ab28-e74a2153d64b
+	fromColumn: FactInternetSales.DueDateKey
+	toColumn: DimDate.DateKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship e0f4e8b5-6e6e-4d61-8492-3f1ef12161f5
+	isActive: false
+	fromColumn: FactInternetSales.OrderDateKey
+	toColumn: DimDate.DateKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship fd9c0722-1d3b-4ac5-9547-31aae3f1bd30
+	isActive: false
+	fromColumn: FactInternetSales.ShipDateKey
+	toColumn: DimDate.DateKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 8216d3c0-54d6-40b6-bb4d-6987587e6c9c
+	fromColumn: FactInternetSales.ProductKey
+	toColumn: DimProduct.ProductKey
+
+	annotation PBI_IsFromSource = FS
+

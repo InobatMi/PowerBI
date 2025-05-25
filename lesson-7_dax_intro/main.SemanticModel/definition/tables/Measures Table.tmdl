@@ -1,0 +1,55 @@
+table 'Measures Table'
+	lineageTag: 7055afad-895c-496c-96b4-232ca6c12710
+
+	measure 'print hello' =
+			
+			VAR greetings = "Hello F14, how was you Power BI journey"
+			RETURN greetings
+		lineageTag: 87c05287-2dab-4b77-bb60-e727590f3a0d
+
+	measure 'exact example' = EXACT("Inobat", "Ino")
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 195aabbe-c03d-439b-a694-2ae78fa0a3f9
+
+	measure 'find example' = FIND("bek", "Uzbekistan",,0)
+		formatString: 0
+		lineageTag: 7412c02a-4168-49d9-98c2-f0fa7a8a3e46
+
+	measure 'fixed example' = FIXED(456.385, 1)
+		lineageTag: d8a5d319-6d9f-4222-952f-22d664172889
+
+	measure 'format example' = "Current sales: " & FORMAT(456.348, "$0.00")
+		lineageTag: 84580530-a46d-43b8-8cd4-329680fd4d4f
+
+	measure 'left example' = left("Germany", 6)
+		lineageTag: 690b3aeb-fbf4-4c25-bfde-922b746dbd38
+
+	measure 'replace example' = REPLACE("Inobat", 4,1, "y")
+		lineageTag: b584a8f8-c37f-4253-b9bb-c3bb3b3d7d28
+
+	measure 'substitute example' = SUBSTITUTE("Inobat", "b", "y")
+		lineageTag: 288722a1-efe4-4136-b970-638aaaf63a20
+
+	measure 'replicate example' = REPT("inobat ", 3)
+		lineageTag: 90024dfc-065a-4363-9930-9854e360e5ae
+
+	measure 'search example' = SEARCH("tan", "Uzbekistan",,0)
+		formatString: 0
+		lineageTag: 3821b09b-6410-4f15-8885-e58a4ae3b8aa
+
+	measure 'value example' = value("45" - "20")
+		lineageTag: c64b3290-5212-4cef-b8f9-2ca934099d45
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Measures Table' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

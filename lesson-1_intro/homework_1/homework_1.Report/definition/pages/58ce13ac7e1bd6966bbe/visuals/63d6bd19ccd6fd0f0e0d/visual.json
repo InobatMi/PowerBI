@@ -1,0 +1,81 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
+  "name": "63d6bd19ccd6fd0f0e0d",
+  "position": {
+    "x": 586.61583205024806,
+    "y": 0,
+    "z": 1000,
+    "height": 204.2143852188577,
+    "width": 628.65997018354233,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales_data"
+                    }
+                  },
+                  "Property": "Region"
+                }
+              },
+              "queryRef": "Sales_data.Region",
+              "nativeQueryRef": "Region",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales_data"
+                    }
+                  },
+                  "Property": "Sales_Rep"
+                }
+              },
+              "queryRef": "Sales_data.Sales_Rep",
+              "nativeQueryRef": "Sales_Rep",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Sales_data"
+                        }
+                      },
+                      "Property": "Total_Sale"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Sales_data.Total_Sale)",
+              "nativeQueryRef": "Sum of Total_Sale"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

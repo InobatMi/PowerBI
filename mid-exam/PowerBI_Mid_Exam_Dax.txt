@@ -1,0 +1,47 @@
+Tool: Power BI
+Module: 1
+Exam Status: Middle
+Exam type: Hybrid
+Number of sections: 2
+First section: test - (20) - (20)
+Second section: Dax puzzles - (5) - (60)
+
+
+
+
+Tasks
+
+1# - Create a DAX measure to calculate the percentage 
+share of each product’s sales within its country (region). 
+The result should be shown in percentage format, where the 
+total sales of each region equals 100%. (use matrix to display output)
+
+
+2# - Create DAX measure to calculate Month-over-Month (MoM) growth based 
+on the Chocolate Sales[Amount] using the Date column from the existing table.
+(use matrix to display output and make sure totals for Quarter should not 
+appeared in matrix output)
+
+3# - Create a DAX measure to find the difference in sales amount between 
+the last sales day in the USA and the last sales day in the UK. 
+(use card to display amount)
+
+4# - 4.1. Create a new column which categorize Box Shipped column into 
+three groups includes "HIGH", "Medium", "low" according to value 
+	if value < 100 then "Low"
+	if value >=100 then value < 300 then "Medium"
+	if value >=300 then "High"
+     4.2. drag and drop matrix to display how many "HIGH", "Medium", "Low" product 
+sold for each country.(use matrix to display amount)
+
+
+5# - Create a DAX measure that dynamically calculates sales only for the selected
+ product category from a slicer. If no category is selected, show the total sales 
+for all categories.
+	-- (use card to display amount)
+	 	
+ 
+
+
+
+ 

@@ -1,0 +1,128 @@
+table Movies
+	lineageTag: 1018c5e5-82ec-489a-9bbc-0824badf8bb1
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: e9b23bfc-5da3-420e-aa2b-cffb52ebe7d3
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		lineageTag: 10bcb9a0-369b-411b-9f5d-509562512957
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Release Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 05555457-5315-4f16-8988-bf7b466faa45
+		summarizeBy: none
+		sourceColumn: Release Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Run Time'
+		dataType: int64
+		formatString: 0
+		lineageTag: da0eb60c-84a7-4d90-acdb-a9cd9bde83f3
+		summarizeBy: sum
+		sourceColumn: Run Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column Genre
+		dataType: string
+		lineageTag: 5a71c2cb-4f93-4544-8b84-2ad070221678
+		summarizeBy: none
+		sourceColumn: Genre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Director
+		dataType: string
+		lineageTag: 6302e5ce-d2b3-4ebe-b444-cd6ee9b957df
+		summarizeBy: none
+		sourceColumn: Director
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 4162c719-fe61-4357-80b8-4f8cd85723bd
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Certificate
+		dataType: string
+		lineageTag: 5a208df4-ec07-46e4-b4b9-fe2aa43dac19
+		summarizeBy: none
+		sourceColumn: Certificate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Budget
+		dataType: int64
+		formatString: 0
+		lineageTag: 291b411f-225a-4278-81ad-bba12073f9c5
+		summarizeBy: sum
+		sourceColumn: Budget
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Box Office'
+		dataType: int64
+		formatString: 0
+		lineageTag: 61aa602a-450e-48b4-b98f-51e4efb62a67
+		summarizeBy: sum
+		sourceColumn: Box Office
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nominations
+		dataType: int64
+		formatString: 0
+		lineageTag: 5100e1c8-d52d-4aeb-b12a-3cc6cffd9a0c
+		summarizeBy: sum
+		sourceColumn: Nominations
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Oscar Wins'
+		dataType: int64
+		formatString: 0
+		lineageTag: e1401818-6d57-4c87-a9ed-6d481b5acb1f
+		summarizeBy: sum
+		sourceColumn: Oscar Wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column profitable_movies = Movies[Box Office] - Movies[Budget] > 0
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 476950bc-487f-4d7a-bd5d-58e29c886544
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Movies = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Inobat\Desktop\Maab\Power BI\lesson-13-practice\Movies.xlsx"), null, true),
+				    Movies_Sheet = Source{[Item="Movies",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Movies_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ID", Int64.Type}, {"Title", type any}, {"Release Date", type date}, {"Run Time", Int64.Type}, {"Genre", type text}, {"Director", type text}, {"Country", type text}, {"Certificate", type any}, {"Budget", Int64.Type}, {"Box Office", Int64.Type}, {"Nominations", Int64.Type}, {"Oscar Wins", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

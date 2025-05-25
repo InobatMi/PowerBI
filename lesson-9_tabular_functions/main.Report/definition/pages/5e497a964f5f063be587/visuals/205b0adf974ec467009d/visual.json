@@ -1,0 +1,157 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
+  "name": "205b0adf974ec467009d",
+  "position": {
+    "x": 24.602447631203546,
+    "y": 299.32977951297647,
+    "z": 0,
+    "height": 260.37590409690421,
+    "width": 1254.7248291913809,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimCustomer"
+                    }
+                  },
+                  "Property": "EnglishOccupation"
+                }
+              },
+              "queryRef": "DimCustomer.EnglishOccupation",
+              "nativeQueryRef": "EnglishOccupation"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FactInternetSales"
+                        }
+                      },
+                      "Property": "SalesAmount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FactInternetSales.SalesAmount)",
+              "nativeQueryRef": "Sum of SalesAmount"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures Table"
+                    }
+                  },
+                  "Property": "TotalSales all"
+                }
+              },
+              "queryRef": "Measures Table.TotalSales all",
+              "nativeQueryRef": "TotalSales all"
+            },
+            {
+              "field": {
+                "Arithmetic": {
+                  "Left": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "FactInternetSales"
+                            }
+                          },
+                          "Property": "SalesAmount"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "Right": {
+                    "ScopedEval": {
+                      "Expression": {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "FactInternetSales"
+                                }
+                              },
+                              "Property": "SalesAmount"
+                            }
+                          },
+                          "Function": 0
+                        }
+                      },
+                      "Scope": []
+                    }
+                  },
+                  "Operator": 3
+                }
+              },
+              "queryRef": "Divide(Sum(FactInternetSales.SalesAmount), ScopedEval(Sum(FactInternetSales.SalesAmount), []))",
+              "nativeQueryRef": "%GT Sum of SalesAmount"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures Table"
+                    }
+                  },
+                  "Property": "% of EnglishOccupation (allselected)"
+                }
+              },
+              "queryRef": "Measures Table.% of EnglishOccupation (allselected)",
+              "nativeQueryRef": "% of EnglishOccupation (allselected)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures Table"
+                    }
+                  },
+                  "Property": "% of EnglishOccupation"
+                }
+              },
+              "queryRef": "Measures Table.% of EnglishOccupation",
+              "nativeQueryRef": "% of EnglishOccupation"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures Table"
+                    }
+                  },
+                  "Property": "% of EnglishOccupation (removefilters)"
+                }
+              },
+              "queryRef": "Measures Table.% of EnglishOccupation (removefilters)",
+              "nativeQueryRef": "% of EnglishOccupation (removefilters)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

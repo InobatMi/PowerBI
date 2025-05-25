@@ -1,0 +1,106 @@
+table 'Production TransactionHistory'
+	lineageTag: f2e410fc-92b6-494c-8f0f-f9166d29eaf2
+
+	column TransactionID
+		dataType: int64
+		formatString: 0
+		lineageTag: d2733d41-2aa2-4686-9881-7732e968321a
+		summarizeBy: count
+		sourceColumn: TransactionID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: c8b365ea-881b-4b3d-94da-72e607b6f451
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReferenceOrderID
+		dataType: int64
+		formatString: 0
+		lineageTag: 747fc8b1-d488-46e2-a8b7-232971874bfe
+		summarizeBy: count
+		sourceColumn: ReferenceOrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReferenceOrderLineID
+		dataType: int64
+		formatString: 0
+		lineageTag: e86ccf64-0095-4da0-b8a5-ca693fbc8378
+		summarizeBy: count
+		sourceColumn: ReferenceOrderLineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransactionDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: dd20ac2a-7dbf-4539-ad1f-20b7ade22ef6
+		summarizeBy: none
+		sourceColumn: TransactionDate
+
+		variation Variation
+			isDefault
+			relationship: 95953ee1-7507-479a-9f33-a4cbeccb219d
+			defaultHierarchy: LocalDateTable_16c2f055-4571-457c-9c1b-6b27313cfdf3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransactionType
+		dataType: string
+		lineageTag: b7c203e1-95fc-49a0-be83-52c8c1fb2b9e
+		summarizeBy: none
+		sourceColumn: TransactionType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 0e242c95-6036-48f7-9969-d4a5f4e5fd9f
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActualCost
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 26a54409-39e6-43cb-a0a2-629f8c12b1c7
+		summarizeBy: sum
+		sourceColumn: ActualCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column ModifiedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: da09e07b-d0e0-4f47-a44f-e44a921fa07b
+		summarizeBy: none
+		sourceColumn: ModifiedDate
+
+		variation Variation
+			isDefault
+			relationship: c6594b88-3970-40f7-acaf-6b679d65357b
+			defaultHierarchy: LocalDateTable_5b876367-23cc-4f16-854c-fa6117d38c40.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Production TransactionHistory' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-CSSCKLQ", "AdventureWorks2019"),
+				    Production_TransactionHistory = Source{[Schema="Production",Item="TransactionHistory"]}[Data]
+				in
+				    Production_TransactionHistory
+
+	annotation PBI_ResultType = Table
+

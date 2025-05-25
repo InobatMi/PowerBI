@@ -1,0 +1,29 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Production TransactionHistory","Production Product","Measures Table"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.141.1558.0 (25.03)+75b5f06a991f8f8a8a4d6b6fcd0f66e1ec2d6fdc
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'Production TransactionHistory'
+ref table DateTableTemplate_662899a4-b4c7-44c4-a90d-69048f2fa2fd
+ref table LocalDateTable_16c2f055-4571-457c-9c1b-6b27313cfdf3
+ref table LocalDateTable_5b876367-23cc-4f16-854c-fa6117d38c40
+ref table 'Production Product'
+ref table LocalDateTable_c0a501ee-e17a-4f01-b123-a9a559c5160f
+ref table LocalDateTable_5389ccc0-5a1d-4659-b3d2-7e39dd9abcb2
+ref table LocalDateTable_afffd7cb-4c3c-4ba6-9de3-12141c7e9458
+ref table LocalDateTable_09a3c1f7-3ea1-4a6c-9993-91d0537eaf66
+ref table 'Measures Table'
+
+ref cultureInfo en-US
+

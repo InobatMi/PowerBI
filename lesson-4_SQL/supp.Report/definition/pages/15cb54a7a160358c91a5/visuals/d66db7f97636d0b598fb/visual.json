@@ -1,0 +1,62 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
+  "name": "d66db7f97636d0b598fb",
+  "position": {
+    "x": 299.632793512525,
+    "y": 0,
+    "z": 1,
+    "height": 315.4029405395,
+    "width": 295.69025675578121,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimSalesTerritory"
+                    }
+                  },
+                  "Property": "SalesTerritoryRegion"
+                }
+              },
+              "queryRef": "DimSalesTerritory.SalesTerritoryRegion",
+              "nativeQueryRef": "SalesTerritoryRegion",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCustomer"
+                        }
+                      },
+                      "Property": "CustomerKey"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "CountNonNull(DimCustomer.CustomerKey)",
+              "nativeQueryRef": "Count of CustomerKey"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

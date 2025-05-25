@@ -1,0 +1,4 @@
+relationship 28b11455-daca-7b7b-f152-67373915c6ae
+	fromColumn: personal_budget_data.TransactionDate
+	toColumn: Date.Date
+

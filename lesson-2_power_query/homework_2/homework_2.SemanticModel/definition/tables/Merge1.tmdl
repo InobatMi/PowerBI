@@ -1,0 +1,80 @@
+table Merge1
+	lineageTag: ea95262a-086e-44b9-88f4-4fb059670ef0
+
+	column Region
+		dataType: string
+		lineageTag: c59cc79d-5005-46b0-9448-732e4960fff5
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: b232b373-ac11-4c54-b02f-f955a99ca676
+		summarizeBy: none
+		sourceColumn: Month Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: e93e06f4-1b07-42f6-ac70-62ab73215adc
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Units_Sold
+		dataType: double
+		lineageTag: af578633-179c-410a-b1cc-43cd7f0b7c2f
+		summarizeBy: sum
+		sourceColumn: Total_Units_Sold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e5a7092-ea96-425d-85ec-b41e632efc18
+		summarizeBy: sum
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prev_Units_Sold
+		dataType: double
+		lineageTag: 92e207a5-b4b4-47b7-bbfa-7abd8a9a05e8
+		summarizeBy: sum
+		sourceColumn: Prev_Units_Sold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column percentage_change
+		dataType: string
+		lineageTag: a5dcf66b-301d-4f29-8cfc-6587b9c8343c
+		summarizeBy: none
+		sourceColumn: percentage_change
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Merge1 = m
+		mode: import
+		source =
+				let
+				    Source = Table.NestedJoin(Sales_Data, {"Region", "Index"}, #"Sales_Data (2)", {"Region", "IndexPlus1"}, "Sales_Data (2)", JoinKind.LeftOuter),
+				    #"Expanded Sales_Data (2)" = Table.ExpandTableColumn(Source, "Sales_Data (2)", {"Total_Units_Sold"}, {"Sales_Data (2).Total_Units_Sold"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded Sales_Data (2)",{{"Sales_Data (2).Total_Units_Sold", "Prev_Units_Sold"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "percentage_change", each ([Total_Units_Sold] - [Prev_Units_Sold])/[Prev_Units_Sold] * 100)
+				in
+				    #"Added Custom"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

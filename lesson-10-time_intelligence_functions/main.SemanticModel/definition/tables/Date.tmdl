@@ -1,0 +1,128 @@
+table Date
+	lineageTag: ec2452fd-89ce-46b9-8a15-fc6fca570c73
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: 47ecd32a-36d4-4638-a1dc-571c3e47fac9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: 0b1dcf07-34cd-4afa-a42d-de9c0c5725b4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month number'
+		formatString: 0
+		lineageTag: ba24b5a5-ab45-468f-ae9c-49fbedfdabb8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month name'
+		lineageTag: 47cc9da6-2e35-462f-9caa-9ff08cbd545a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month name]
+		sortByColumn: 'Month number'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		formatString: 0
+		lineageTag: 1fb56747-b823-4866-8e8a-8782f96ef204
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		formatString: 0
+		lineageTag: 65196b42-1f68-4706-a8ea-0773e7d0b63f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Day]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weekday
+		formatString: 0
+		lineageTag: 5f0de2f8-4d09-42b4-9d19-e842fe35e1d8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Weekday]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Weekday name'
+		lineageTag: 90442e92-af6d-4f29-b974-65286a4ffc4b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Weekday name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column QQ-YYYY
+		lineageTag: 672ec182-174a-409b-9b26-fee29eb418c7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [QQ-YYYY]
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Date Hierarchy'
+		lineageTag: 8d282e5e-f394-40d3-9a0c-55aacfaace73
+
+		level Year
+			lineageTag: 97546030-c699-4d9a-8e19-465cf58a4320
+			column: Year
+
+		level Quarter
+			lineageTag: 67a5cf2a-b392-455c-8fd5-bd5829461f10
+			column: Quarter
+
+		level 'Month name'
+			lineageTag: 0ddd70ac-83a6-41f4-951e-32f7af296901
+			column: 'Month name'
+
+		level Day
+			lineageTag: fc3cca47-79f5-43f5-b6f1-63dd3f286735
+			column: Day
+
+	partition Date = calculated
+		mode: import
+		source = ```
+				
+				VAR max_year = YEAR(MAX(personal_budget_data[TransactionDate]))
+				VAR min_year = YEAR(MIN(personal_budget_data[TransactionDate]))
+				
+				RETURN 
+				        ADDCOLUMNS(
+				            FILTER(
+				                CALENDARAUTO(),
+				                AND(YEAR([Date]) >=min_year,YEAR([Date])<=max_year)),
+				                "Year", YEAR([Date]),
+				                "Month number",MONTH([Date]),
+				                "Month name", FORMAT([Date], "MMMM"),
+				                "Quarter", QUARTER([Date]),
+				                "Day", DAY([Date]),
+				                "Weekday", WEEKDAY([Date]),
+				                "Weekday name", FORMAT([Date], "dddd"),
+				                "QQ-YYYY", "Q" & FORMAT([Date],"Q-YYYY")
+				                )
+				```
+
+	annotation PBI_Id = 7637e811632c4116b17af10937b3c958
+

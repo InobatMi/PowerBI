@@ -1,0 +1,53 @@
+table Alldetails
+	lineageTag: efac07b1-175e-42cb-895e-2e81cb504732
+
+	column COM_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c7b2fc2-a9b6-4f86-abd0-72f6b0f520b0
+		summarizeBy: none
+		sourceColumn: COM_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column COM_NAME
+		dataType: string
+		lineageTag: 0e801b88-ce95-4f1c-94dd-bc7c1159fc16
+		summarizeBy: none
+		sourceColumn: COM_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'item_mast.Maxprice'
+		dataType: double
+		lineageTag: b6fa2bd7-8ee9-4f54-9214-54234be14834
+		summarizeBy: sum
+		sourceColumn: item_mast.Maxprice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'item name.PRO_NAME'
+		dataType: string
+		lineageTag: c0dcc243-36a9-4f54-9cc0-2c7ddef1c528
+		summarizeBy: none
+		sourceColumn: item name.PRO_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Alldetails = m
+		mode: import
+		source =
+				let
+				    Source = Table.NestedJoin(company_mast, {"COM_ID"}, item_mast, {"PRO_COM"}, "item_mast", JoinKind.LeftOuter),
+				    #"Expanded item_mast" = Table.ExpandTableColumn(Source, "item_mast", {"Maxprice"}, {"item_mast.Maxprice"}),
+				    #"Merged Queries" = Table.NestedJoin(#"Expanded item_mast", {"COM_ID", "item_mast.Maxprice"}, #"item name", {"PRO_COM", "PRO_PRICE"}, "item name", JoinKind.LeftOuter),
+				    #"Expanded item name" = Table.ExpandTableColumn(#"Merged Queries", "item name", {"PRO_NAME"}, {"item name.PRO_NAME"})
+				in
+				    #"Expanded item name"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

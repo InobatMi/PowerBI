@@ -1,0 +1,53 @@
+table 'item name'
+	lineageTag: 7d2dee82-a309-4c61-aa5f-73f13aba7e7e
+
+	column PRO_COM
+		dataType: int64
+		formatString: 0
+		lineageTag: 92c87e4a-8c87-46eb-b4a7-69eb82440773
+		summarizeBy: sum
+		sourceColumn: PRO_COM
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 667b3688-d46c-4717-91da-501aea2827cb
+		summarizeBy: count
+		sourceColumn: PRO_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRO_NAME
+		dataType: string
+		lineageTag: 62d3cb36-2c1c-4208-80e6-605d513fabe1
+		summarizeBy: none
+		sourceColumn: PRO_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRO_PRICE
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c3e5915-8a8a-476d-8e25-141367d12282
+		summarizeBy: sum
+		sourceColumn: PRO_PRICE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'item name' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Inobat\Desktop\Maab\Power BI\lesson-3_power_bi,power_query\Item.xlsx"), null, true),
+				    item_mast_Sheet = Source{[Item="item_mast",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(item_mast_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PRO_COM", Int64.Type}, {"PRO_ID", Int64.Type}, {"PRO_NAME", type text}, {"PRO_PRICE", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

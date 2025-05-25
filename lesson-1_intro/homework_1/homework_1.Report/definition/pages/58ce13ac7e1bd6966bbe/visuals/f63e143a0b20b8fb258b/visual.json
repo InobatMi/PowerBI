@@ -1,0 +1,31 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
+  "name": "f63e143a0b20b8fb258b",
+  "position": {
+    "x": 586.61583205024806,
+    "y": 224.23540337756924,
+    "z": 4000,
+    "height": 240.25221790453847,
+    "width": 628.65997018354233,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "qnaVisual",
+    "objects": {
+      "hiddenProperties": [
+        {
+          "properties": {
+            "savedUtterance": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Maximum profit per unit sorted by year'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

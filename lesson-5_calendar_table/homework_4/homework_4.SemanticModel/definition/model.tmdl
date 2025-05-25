@@ -1,0 +1,15 @@
+model Model
+	culture: en-US
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.141.1558.0 (25.03)+75b5f06a991f8f8a8a4d6b6fcd0f66e1ec2d6fdc
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table CalendarTable
+ref table DateTableTemplate_6ff3d47c-4173-4bbf-a68f-0e6713132ba7
+ref table LocalDateTable_52dd73c7-7f28-47a2-8421-754fde2875a7
+
+ref cultureInfo en-US
+

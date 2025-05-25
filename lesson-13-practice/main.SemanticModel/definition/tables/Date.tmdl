@@ -1,0 +1,147 @@
+table Date
+	lineageTag: ff3fcf11-c227-44a2-bdd3-41c2c0b81f5f
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: fae2bccb-f0d9-41d6-9f30-8908036738ec
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: 6af35ecf-d100-4ca8-8565-dc6e74bc826b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		formatString: 0
+		lineageTag: 3726c64e-2310-4b78-ace1-f617ba06ff54
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		lineageTag: 1d6bd983-aa05-462b-9b32-791cbdaf111b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Name]
+		sortByColumn: 'Month Number'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		formatString: 0
+		lineageTag: e41ba834-c50d-4913-960a-357c5335dc7d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		formatString: 0
+		lineageTag: d9ed3811-73c7-430d-ad87-8028a6a23239
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Day]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weekday
+		formatString: 0
+		lineageTag: bcfc6a59-a5d1-4d5b-aa6f-ebed61e37e9f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Weekday]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Weekday Name'
+		lineageTag: d79b7bad-901c-4709-9a27-477c1f06e129
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Weekday Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column QQ-YYYY
+		lineageTag: e83b8ddb-b5a3-40cf-a68f-ecdfac28af26
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [QQ-YYYY]
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Date Hierarchy'
+		lineageTag: 9723dd67-7cce-477e-ab55-a2fb09b55a1b
+
+		level Day
+			lineageTag: 712d904d-b04b-42fe-b707-3da52cc14973
+			column: Day
+
+		level Quarter
+			lineageTag: 0b3cc462-df2d-40f9-8e3f-3605a5969ba5
+			column: Quarter
+
+		level Date
+			lineageTag: 37e0c4ce-df26-4d43-91d6-3a20a5f2eb3e
+			column: Date
+
+		level 'Month Name'
+			lineageTag: 5c2e3b76-c610-4254-a586-2b1796bdb484
+			column: 'Month Name'
+
+		level 'Month Number'
+			lineageTag: 235d9de4-0243-474b-b1e9-922e29852d0c
+			column: 'Month Number'
+
+		level QQ-YYYY
+			lineageTag: 40f9fa4b-d965-43c7-80b8-debe3fa7414d
+			column: QQ-YYYY
+
+		level Weekday
+			lineageTag: 53d9fdd5-aa14-4c81-bca3-2dbb21c55fc6
+			column: Weekday
+
+		level 'Weekday Name'
+			lineageTag: 8d2e2259-0b56-41fd-8305-646b57bfc5c0
+			column: 'Weekday Name'
+
+		level Year
+			lineageTag: d4916715-5798-41e5-82bd-9713c6746623
+			column: Year
+
+	partition Date = calculated
+		mode: import
+		source = ```
+				
+				VAR max_year = YEAR(MAX(Movies[Release Date]))
+				VAR min_year = YEAR(MIN(Movies[Release Date]))
+				Return 
+				        ADDCOLUMNS(
+				                FILTER(
+				                        CALENDARAUTO(),
+				                        AND(YEAR([Date]) >=min_year,YEAR([Date]) <=max_year)),
+				                        "Year",YEAR([Date]),
+				                        "Month Number",MONTH([Date]),
+				                        "Month Name", FORMAT([Date],"MMMM"),
+				                        "Quarter",QUARTER([Date]),
+				                        "Day",DAY([Date]),
+				                        "Weekday",WEEKDAY([Date]),
+				                        "Weekday Name",FORMAT([Date],"dddd"),
+				                        "QQ-YYYY","Q" & FORMAT([Date],"Q-YYYY")
+				                        )
+				```
+
+	annotation PBI_Id = 0c87b1fbe1c4409e897cc7e9a23be7ca
+

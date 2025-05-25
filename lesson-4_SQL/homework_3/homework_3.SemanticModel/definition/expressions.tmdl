@@ -1,0 +1,33 @@
+expression Department_name = "Marketing" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 6ff188a7-8b54-47fe-8129-b06f89911f16
+	queryGroup: 'working with params'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression Dep_names = "Production Control" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 07f767f3-9270-4efc-b4ba-5a2fc806b14b
+	queryGroup: 'GetAllEmployeesByDepName func'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression GetAllEmployeesByDepName =
+		let
+		    Source = (Dep_names as text) => let
+		        Department_names = Dep_names,
+		        Source = Sql.Database("DESKTOP-CSSCKLQ", "AdventureWorksDW2019", [Query="select * from [dbo].[DimEmployee]#(lf)where DepartmentName = '"&Department_names&"'"])
+		    in
+		        Source
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Employee""}" ]
+	lineageTag: 8dea987e-def7-4888-b3e0-264f70bf097f
+	queryGroup: 'GetAllEmployeesByDepName func'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+

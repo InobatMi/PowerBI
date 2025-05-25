@@ -1,0 +1,26 @@
+relationship 54e01c72-bca4-4072-8a1f-156f01443fd2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimCustomer.BirthDate
+	toColumn: LocalDateTable_050f1270-5d0b-4ada-9323-3a08d61a9fde.Date
+
+relationship cb77f920-2de6-49cf-8b6c-3c6f8fa26017
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimCustomer.DateFirstPurchase
+	toColumn: LocalDateTable_bf01d945-3a21-4a77-8fda-5a41bb5f5623.Date
+
+relationship 5e437d32-564d-4205-a824-c8b679cd9ff1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimCustomer1.BirthDate
+	toColumn: LocalDateTable_4ef547a8-6e83-44b2-a6a1-31303477c8ac.Date
+
+relationship d6ffa09a-4b1b-486e-b9ed-1de9d13e0fa3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimCustomer1.DateFirstPurchase
+	toColumn: LocalDateTable_abd9556d-8c04-4bd1-a0fe-5e3d89f8f7b4.Date
+
+relationship AutoDetected_d301a66b-1a2b-40cd-80d4-53d5ecc69933
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: DimCustomer1.CustomerAlternateKey
+	toColumn: English_edu.'test_fields.CustomerAlternateKey'
+

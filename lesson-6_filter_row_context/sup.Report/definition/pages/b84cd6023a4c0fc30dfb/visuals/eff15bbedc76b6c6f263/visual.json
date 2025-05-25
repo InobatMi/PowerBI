@@ -1,0 +1,114 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
+  "name": "eff15bbedc76b6c6f263",
+  "position": {
+    "x": 400.89516949385529,
+    "y": 279.27528661369695,
+    "z": 2000,
+    "height": 403.14738954719155,
+    "width": 391.88628928051025,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimSalesTerritory"
+                    }
+                  },
+                  "Property": "SalesTerritoryCountry"
+                }
+              },
+              "queryRef": "DimSalesTerritory.SalesTerritoryCountry",
+              "nativeQueryRef": "SalesTerritoryCountry",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimSalesTerritory"
+                    }
+                  },
+                  "Property": "SalesTerritoryRegion"
+                }
+              },
+              "queryRef": "DimSalesTerritory.SalesTerritoryRegion",
+              "nativeQueryRef": "SalesTerritoryRegion",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FactInternetSales"
+                        }
+                      },
+                      "Property": "SalesAmount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FactInternetSales.SalesAmount)",
+              "nativeQueryRef": "Sum of SalesAmount"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures Table"
+                    }
+                  },
+                  "Property": "% of region"
+                }
+              },
+              "queryRef": "Measures Table.% of region",
+              "nativeQueryRef": "% of region"
+            }
+          ]
+        }
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "DimSalesTerritory.SalesTerritoryCountry"
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DimSalesTerritory.SalesTerritoryRegion"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "drillFilterOtherVisuals": true
+  }
+}

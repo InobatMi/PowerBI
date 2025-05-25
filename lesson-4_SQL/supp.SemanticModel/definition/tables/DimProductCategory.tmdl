@@ -1,0 +1,56 @@
+table DimProductCategory
+	lineageTag: 4c9c58cf-aa64-4ea6-8e1d-3c2f6ce3a2a5
+
+	column ProductCategoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 084e7d9d-ec5b-4b68-84ad-3b24799ae12c
+		summarizeBy: none
+		sourceColumn: ProductCategoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCategoryAlternateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 54823a3b-30de-4a47-b013-2e991fd87ed1
+		summarizeBy: none
+		sourceColumn: ProductCategoryAlternateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnglishProductCategoryName
+		dataType: string
+		lineageTag: e00c7848-c4e1-41df-8c6f-2770dad752ff
+		summarizeBy: none
+		sourceColumn: EnglishProductCategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SpanishProductCategoryName
+		dataType: string
+		lineageTag: ba7bb729-832a-4ded-8489-8c5e3ba76cb4
+		summarizeBy: none
+		sourceColumn: SpanishProductCategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column FrenchProductCategoryName
+		dataType: string
+		lineageTag: fd4c8eaf-a589-4379-a908-aa7178549ec1
+		summarizeBy: none
+		sourceColumn: FrenchProductCategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimProductCategory = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-CSSCKLQ", "AdventureWorksDW2019"),
+				    dbo_DimProductCategory = Source{[Schema="dbo",Item="DimProductCategory"]}[Data]
+				in
+				    dbo_DimProductCategory
+
+	annotation PBI_ResultType = Table
+

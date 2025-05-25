@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.7.0/schema.json",
+  "name": "fc00debd66cab2d42efd",
+  "position": {
+    "x": 329.66613672496027,
+    "y": 245.21462639109697,
+    "z": 3000,
+    "height": 138.37837837837839,
+    "width": 333.7360890302067,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures Table"
+                    }
+                  },
+                  "Property": "The Movie with Higest Box Office"
+                }
+              },
+              "queryRef": "Measures Table.The Movie with Higest Box Office",
+              "nativeQueryRef": "The Movie with Higest Box Office"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
