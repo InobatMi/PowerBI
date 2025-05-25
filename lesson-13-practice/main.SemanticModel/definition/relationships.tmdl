@@ -1,4 +1,0 @@
-relationship 7393157e-a60f-bff9-4317-f1e8e3c619fb
-	fromColumn: Movies.'Release Date'
-	toColumn: Date.Date
-

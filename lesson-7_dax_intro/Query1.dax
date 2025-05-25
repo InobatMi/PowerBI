@@ -1,1 +1,0 @@
-﻿EVALUATE filter('Production TransactionHistory','Production TransactionHistory'[Quantity]=1 &&'Production TransactionHistory'[TransactionType]="S")

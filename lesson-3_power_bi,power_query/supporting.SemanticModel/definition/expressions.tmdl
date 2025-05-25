@@ -1,7 +1,0 @@
-expression SongTypes = "Elderly.xlsx" meta [IsParameterQuery=true, List={"Anyone.xlsx", "Elderly.xlsx", "Toddlers.xlsx"}, DefaultValue="Anyone.xlsx", Type="Any", IsParameterQueryRequired=true]
-	lineageTag: 33bfae01-7fe2-4458-8610-b83b06e24174
-
-	annotation PBI_NavigationStepName = Navigation
-
-	annotation PBI_ResultType = Text
-
